@@ -136,12 +136,12 @@ public class WeaponRegistry
 	public boolean registerSword(String origin, String modid, Item item) {
 		boolean added = false;
 		if (weapons.contains(item)) {
-			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] CONFLICT: %s:%s cannot be registered as a sword - it is already registered as a non-sword weapon", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] CONFLICT: %s:%s cannot be registered as a sword - it is already registered as a non-sword weapon", origin, modid, item.getTranslationKey().replace("item.", "")));
 		} else if (swords.add(item)) {
-			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Registered %s:%s as a sword", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Registered %s:%s as a sword", origin, modid, item.getTranslationKey().replace("item.", "")));
 			added = true;
 		} else {
-			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] %s:%s has already been registered as a sword", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] %s:%s has already been registered as a sword", origin, modid, item.getTranslationKey().replace("item.", "")));
 		}
 		forbidden_swords.remove(item);
 		return added;
@@ -158,12 +158,12 @@ public class WeaponRegistry
 	public boolean registerWeapon(String origin, String modid, Item item) {
 		boolean added = false;
 		if (swords.contains(item)) {
-			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] CONFLICT: %s:%s cannot be registered as a weapon - it is already registered as a sword", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] CONFLICT: %s:%s cannot be registered as a weapon - it is already registered as a sword", origin, modid, item.getTranslationKey().replace("item.", "")));
 		} else if (weapons.add(item)) {
-			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Registered %s:%s as a non-sword weapon", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Registered %s:%s as a non-sword weapon", origin, modid, item.getTranslationKey().replace("item.", "")));
 			added = true;
 		} else {
-			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] %s:%s has already been registered as a weapon", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] %s:%s has already been registered as a weapon", origin, modid, item.getTranslationKey().replace("item.", "")));
 		}
 		forbidden_weapons.remove(item);
 		return added;
@@ -177,13 +177,13 @@ public class WeaponRegistry
 		boolean added = false; // prevent too much log spam
 		if (forbidden_swords.add(item)) {
 			added = true;
-			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] %s:%s added to FORBIDDEN swords list", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] %s:%s added to FORBIDDEN swords list", origin, modid, item.getTranslationKey().replace("item.", "")));
 		}
 		if (swords.remove(item)) {
-			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Removed %s:%s from list of registered SWORDS", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Removed %s:%s from list of registered SWORDS", origin, modid, item.getTranslationKey().replace("item.", "")));
 			return true;
 		} else if (!added) {
-			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] Could not remove %s:%s - it was not registered as a sword", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] Could not remove %s:%s - it was not registered as a sword", origin, modid, item.getTranslationKey().replace("item.", "")));
 		}
 		return added;
 	}
@@ -196,13 +196,13 @@ public class WeaponRegistry
 		boolean added = false; // prevent too much log spam
 		if (forbidden_weapons.add(item)) {
 			added = true;
-			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] %s:%s added to FORBIDDEN weapons list", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] %s:%s added to FORBIDDEN weapons list", origin, modid, item.getTranslationKey().replace("item.", "")));
 		}
 		if (weapons.remove(item)) {
-			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Removed %s:%s from list of registered WEAPONS", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.info(String.format("[WeaponRegistry] [%s] Removed %s:%s from list of registered WEAPONS", origin, modid, item.getTranslationKey().replace("item.", "")));
 			return true;
 		} else if (!added) {
-			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] Could not remove %s:%s - it was not registered as a non-sword weapon", origin, modid, item.getUnlocalizedName().replace("item.", "")));
+			SwordSkillsApi.LOGGER.warn(String.format("[WeaponRegistry] [%s] Could not remove %s:%s - it was not registered as a non-sword weapon", origin, modid, item.getTranslationKey().replace("item.", "")));
 		}
 		return added;
 	}
